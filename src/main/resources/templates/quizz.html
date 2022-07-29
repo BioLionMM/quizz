@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quizz</title>
+</head>
+<body>
+
+<!--<th:import url="/WEB-INF/menu.html"></th:import>-->
+<h1>Quizz</h1>
+
+<div th:switch="${#lists.size(listquestions)}">
+    <p th:case="'0'">Quizz vide !</p>
+    <div th:case="*">
+        <form action="#" th:action="@{/questionsList}" method="post" th:object="${listquestion}">
+        <ul th:each="q:${listquestions}">
+            <li th:text="${q.contenuQuestion}"></li>
+            <p>Reponses possibles: </p>
+
+                <ul th:each="r:${q.listeReponses}">
+                    <input type="radio" th:id=${q.id} th:name=${q.id} th:value=${r.contenuReponse}>
+                    <label th:for=${q.id} th:text="${r.contenuReponse}"></label><br>
+                </ul>
+        </ul>
+        <div>
+            <input type="submit" value="Envoyer">
+        </div>
+        </form>
+        <!--<li th:text="${question.contenuQuestion}"></li>
+        <p>Reponses possibles: </p>
+        <form action="#" th:action="@{/questionList}" method="post" th:object="${question}">
+            <ul th:each="r:${question.listeReponses}">
+                <input type="radio" id="${r.id}" name="${question.contenuQuestion}" value="${r.id}">
+                <label for="${r.id}" th:text="${r.contenuReponse}"></label><br>
+            </ul>
+            <div>
+                <input type="submit" value="Envoyer">
+            </div>
+        </form>-->
+
+    </div>
+</div>
+</body>
+</html>

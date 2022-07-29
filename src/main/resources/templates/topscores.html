@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Top scores</title>
+</head>
+<body>
+    <div th:switch="${#lists.size(topScores)}">
+        <p th:case="'0'">Pas de scores !</p>
+        <div th:case="*">
+            <ul th:each="q:${topScores}">
+                <li th:text="${q.pseudo}"></li>
+                <li th:text="${q.meilleurScore}"></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
